@@ -2,9 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Load Pagefind script dynamically
     const script = document.createElement("script");
     script.src = "/docs/pagefind/pagefind.js";
-    script.defer = true;
+    script.type = 'module';
     script.onload = () => {
-        const searchButton = document.getElementById("pagefind-search-button");
+        const searchInput = document.getElementById("pagefind-search-input");
 
         // Create search container if not present
         let searchContainer = document.getElementById("search");
@@ -19,10 +19,10 @@ document.addEventListener("DOMContentLoaded", function () {
         let pagefindInitialized = false;
 
         // Attach click event to search button
-        if (searchButton) {
-            searchButton.addEventListener("click", () => {
-                searchContainer.style.display = "block";
 
+        if (searchInput) {
+            searchInput.addEventListener("focus", () => {
+                searchContainer.style.display = "block";
                 if (!pagefindInitialized) {
                     new PagefindUI({ element: "#search" });
                     pagefindInitialized = true;
